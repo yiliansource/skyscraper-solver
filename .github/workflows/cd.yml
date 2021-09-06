@@ -1,0 +1,32 @@
+name: CD
+
+on:
+    workflow_dispatch:
+
+    push:
+        branches:
+            - main
+
+jobs:
+    cd:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v2
+
+            - name: use node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14.x
+
+            - name: install dependancies
+              run: yarn install --frozen-lockfile
+
+            - name: build next.js
+              run: yarn build
+
+            - name: deploy to github pages
+              uses: JamesIves/github-pages-deploy-action@4.1.1
+              with:
+                  branch: gh-pages
+                  folder: ./out
