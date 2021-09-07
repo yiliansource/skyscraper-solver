@@ -4,8 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build && next export",
+        "build": "next build",
         "start": "next start",
+        "export": "yarn build && next export",
+        "preview": "yarn export && nws -o -d out -b skyscraper-solver",
         "lint": "next lint",
         "format": "prettier --write .",
         "test": "env TS_NODE_PROJECT=src/test/tsconfig.json mocha -r ts-node/register -r tsconfig-paths/register 'src/**/*.spec.ts'"
@@ -34,6 +36,7 @@
         "eslint": "7.32.0",
         "eslint-config-next": "11.1.2",
         "mocha": "^9.1.1",
+        "nws": "^1.1.1",
         "prettier": "^2.3.2",
         "prettier-plugin-style-order": "^0.2.2",
         "ts-node": "^10.2.1",
